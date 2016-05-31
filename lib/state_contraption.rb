@@ -13,8 +13,8 @@ module StateContraption
     def state_group(group, states)
       const_set "#{group.upcase}_STATES", states
       const_set "NOT_#{group.upcase}_STATES", const_get('STATES') - states
-      scope group, where("#{table_name}.state IN (?)", states)
-      scope "not_#{group}", where("#{table_name}.state NOT IN (?)", states)
+      scope group, -> {where("#{table_name}.state IN (?)", states)}
+      scope "not_#{group}", -> {where("#{table_name}.state NOT IN (?)", states)}
       define_method :"#{group}?" do
         states.include?(state)
       end
