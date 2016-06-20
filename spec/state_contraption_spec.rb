@@ -108,8 +108,8 @@ describe BeerContraption do
     end
 
     it "should be able to find beers I can and can't drink from" do
-      BeerContraption.drinkable.all.should =~ [@beer1, @beer2]
-      BeerContraption.not_drinkable.all.should =~ [@beer3]
+      BeerContraption.drinkable.to_a.should =~ [@beer1, @beer2]
+      BeerContraption.not_drinkable.to_a.should =~ [@beer3]
     end
   end
 end
